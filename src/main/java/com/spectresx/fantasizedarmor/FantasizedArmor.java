@@ -1,6 +1,10 @@
 package com.spectresx.fantasizedarmor;
 
 import com.mojang.logging.LogUtils;
+import com.spectresx.fantasizedarmor.block.ModBlocks;
+import com.spectresx.fantasizedarmor.item.ModCreativeModeTabs;
+import com.spectresx.fantasizedarmor.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -21,6 +25,11 @@ public class FantasizedArmor {
     public FantasizedArmor() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModCreativeModeTabs.register(modEventBus);
+
+        ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -32,7 +41,10 @@ public class FantasizedArmor {
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.RAW_NEONIUM);
+            event.accept(ModItems.NEONIUM);
+        }
     }
 
     @SubscribeEvent
