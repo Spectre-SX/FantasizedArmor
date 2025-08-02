@@ -1,6 +1,7 @@
 package com.spectresx.fantasizedarmor.item;
 
 import com.spectresx.fantasizedarmor.FantasizedArmor;
+import com.spectresx.fantasizedarmor.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -19,6 +20,8 @@ public class ModCreativeModeTabs {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.RAW_NEONIUM.get());
                         pOutput.accept(ModItems.NEONIUM.get());
+
+                        pOutput.accept(ModBlocks.NEONIUM_BLOCK.get());
                     })
                     .build());
 
